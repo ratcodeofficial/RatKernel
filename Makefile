@@ -1,6 +1,6 @@
 all:
 		as --32 ./src/asm/boot.s -o ./bin/boot.o
-		gcc -m32 -c src/kernel/kernel.cpp -o ./bin/kernel.o -ffreestanding -O2 -Wall -Wextra
+		gcc -m32 -c src/kernel/kernel.c -o ./bin/kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 		ld -m elf_i386 -T ./kernel/linker.ld ./bin/kernel.o ./bin/boot.o -o ./out/RatKernel.bin -nostdlib
 		grub-file --is-x86-multiboot ./out/RatKernel.bin
 		mkdir -p isodir/boot/grub
